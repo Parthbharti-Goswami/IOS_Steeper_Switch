@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     var mcheese_price:Int?
     var total:Int?
     
+    var p:Int?
+    
     @IBOutlet weak var step: UIStepper!
     
     @IBOutlet weak var qty_lbl: UILabel!
@@ -48,8 +50,11 @@ class ViewController: UIViewController {
         
         let qty = Int(step.value).description
         qty_lbl.text = qty
+        p = Int(qty)
         t_price = (399 * Int(qty)!)
         total = t_price
+        Extra_Cheese_Btn((Any).self)
+        Mozzarella_Cheese_btn((Any).self)
         total_lbl.text = "Total : \(total!)/-"
         
         
@@ -58,10 +63,12 @@ class ViewController: UIViewController {
     @IBAction func Extra_Cheese_Btn(_ sender: Any) {
         
         if cheese_switch.isOn {
-            total! += 45
+            let updated_price = (p! * 45)
+            total! += updated_price
             total_lbl.text = "Total : \(total!)/-"
         }else  if cheese_switch.isOn == false {
-            total! -= 45
+            let updated_price = (p! * 45)
+            total! -= updated_price
             total_lbl.text = "Total : \(total!)/-"
         }
         
@@ -70,10 +77,12 @@ class ViewController: UIViewController {
     @IBAction func Mozzarella_Cheese_btn(_ sender: Any) {
         
         if mcheese_switch.isOn {
-            total! += 99
+            let updated_price = (p! * 99)
+            total! += updated_price
             total_lbl.text = "Total : \(total!)/-"
         }else  if mcheese_switch.isOn == false {
-            total! -= 99
+            let updated_price = (p! * 99)
+            total! -= updated_price
             total_lbl.text = "Total : \(total!)/-"
             
         }
